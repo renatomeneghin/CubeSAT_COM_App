@@ -47,9 +47,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>199</y>
+      <y>200</y>
       <width>581</width>
-      <height>91</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -61,12 +61,25 @@
        <x>0</x>
        <y>0</y>
        <width>579</width>
-       <height>89</height>
+       <height>79</height>
       </rect>
      </property>
+     <widget class="QTextEdit" name="Texto_Recebido">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>581</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>

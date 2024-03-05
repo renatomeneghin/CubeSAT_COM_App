@@ -12,3 +12,10 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_Enviar_clicked()
+{
+    ui->Texto_Recebido->insertPlainText(ui->Comando->toPlainText() + "\n");
+    ui->Comando->setPlainText("");
+}
+
