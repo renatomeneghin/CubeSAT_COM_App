@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+    #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -25,8 +25,12 @@ private slots:
     void on_Connection_clicked();
 
     void on_Texto_Recebido_textChanged();
+    //bool openSerialPort();
+
+    //bool closeSerialPort();
 
 private:
     Ui::MainWindow *ui;
+    // QSerialPort *Serial_FTDI;
 };
 #endif // MAINWINDOW_H
