@@ -6,94 +6,414 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>596</width>
-    <height>328</height>
+    <width>619</width>
+    <height>420</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Controlador CubeSAT - SpaceLAB UFSC</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="horizontalLayoutWidget">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>10</y>
-      <width>481</width>
-      <height>31</height>
+      <x>10</x>
+      <y>20</y>
+      <width>72</width>
+      <height>171</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
      <item>
-      <widget class="QLabel" name="texto_Comando">
-       <property name="text">
-        <string>Comando:</string>
+      <widget class="QGraphicsView" name="Bateria_imagem"/>
+     </item>
+     <item>
+      <widget class="QLCDNumber" name="Bateria_numero">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>30</height>
+        </size>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPlainTextEdit" name="Comando"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="Enviar">
-       <property name="text">
-        <string>Enviar</string>
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="smallDecimalPoint">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
     </layout>
    </widget>
-   <widget class="QScrollArea" name="scrollArea">
+   <widget class="QGroupBox" name="Serial_Port">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>200</y>
-      <width>581</width>
-      <height>81</height>
+      <x>520</x>
+      <y>90</y>
+      <width>91</width>
+      <height>111</height>
      </rect>
     </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
+    <property name="title">
+     <string>Serial_Port</string>
     </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
+    <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
-       <width>579</width>
-       <height>79</height>
+       <y>20</y>
+       <width>91</width>
+       <height>91</height>
       </rect>
      </property>
-     <widget class="QTextEdit" name="Texto_Recebido">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>581</width>
-        <height>81</height>
-       </rect>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <property name="spacing">
+       <number>0</number>
       </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
+      <item>
+       <widget class="QComboBox" name="Port">
+        <item>
+         <property name="text">
+          <string>ttyUSB0</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ttyUSB1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ttyUSB2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ttyUSB3</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ttyUSB4</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ttyUSB5</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ttyUSB6</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ttyUSB7</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="Baud_Rate">
+        <property name="currentText">
+         <string>115200</string>
+        </property>
+        <property name="currentIndex">
+         <number>11</number>
+        </property>
+        <item>
+         <property name="text">
+          <string>110</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>300</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>600</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>1200</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2400</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>4800</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>9600</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>14400</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>19200</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>38400</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>57600</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>115200</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>128000</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>256000</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="Connection">
+        <property name="text">
+         <string>Connect</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
-      <width>81</width>
-      <height>181</height>
+      <y>210</y>
+      <width>601</width>
+      <height>161</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
      <item>
-      <widget class="QGraphicsView" name="Bateria_imagem"/>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>1</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="texto_Comando">
+         <property name="text">
+          <string>Comando:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="Comando"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="Enviar">
+         <property name="minimumSize">
+          <size>
+           <width>89</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Enviar</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
-      <widget class="QLCDNumber" name="Bateria_numero"/>
+      <widget class="QTextEdit" name="Texto_Recebido">
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOn</enum>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>50</y>
+      <width>261</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Battery 2 Voltage:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>3.300 V</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>80</y>
+      <width>261</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Battery Current:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>3.300 V</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>110</y>
+      <width>261</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Battery Average Current:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>3.300 V</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>140</y>
+      <width>261</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="label_9">
+       <property name="text">
+        <string>Battery Accumulated Current</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_10">
+       <property name="text">
+        <string>3.300 V</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_6">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>170</y>
+      <width>261</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <item>
+      <widget class="QLabel" name="label_11">
+       <property name="text">
+        <string>Protection Register</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_12">
+       <property name="text">
+        <string>3.300 V</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>20</y>
+      <width>261</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Battery 1 Voltage:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>3.300 V</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -103,7 +423,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>596</width>
+     <width>619</width>
      <height>22</height>
     </rect>
    </property>

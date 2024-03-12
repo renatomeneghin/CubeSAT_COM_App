@@ -20,6 +20,10 @@ public:
 private slots:
     void on_Enviar_clicked();
 
+    void on_lineEdit_returnPressed();
+
+    void on_Comando_returnPressed();
+
 private:
     Ui::MainWindow *ui;
 };
