@@ -20,9 +20,11 @@ public:
 private slots:
     void on_Enviar_clicked();
 
-    void on_lineEdit_returnPressed();
-
     void on_Comando_returnPressed();
+
+    void on_Connection_clicked();
+
+    void on_Texto_Recebido_textChanged();
 
 private:
     Ui::MainWindow *ui;

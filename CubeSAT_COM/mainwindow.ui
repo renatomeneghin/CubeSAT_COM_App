@@ -24,6 +24,9 @@
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>0</number>
+     </property>
      <property name="sizeConstraint">
       <enum>QLayout::SetDefaultConstraint</enum>
      </property>
@@ -54,9 +57,9 @@
     <property name="geometry">
      <rect>
       <x>520</x>
-      <y>90</y>
+      <y>120</y>
       <width>91</width>
-      <height>111</height>
+      <height>91</height>
      </rect>
     </property>
     <property name="title">
@@ -68,7 +71,7 @@
        <x>0</x>
        <y>20</y>
        <width>91</width>
-       <height>91</height>
+       <height>71</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -219,6 +222,9 @@
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <property name="spacing">
+      <number>0</number>
+     </property>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <property name="spacing">
@@ -272,14 +278,14 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="Bateria2">
        <property name="text">
         <string>Battery 2 Voltage:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="Bat_2_mV">
        <property name="text">
         <string>3.300 V</string>
        </property>
@@ -298,14 +304,14 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="Corrente_Bateria">
        <property name="text">
         <string>Battery Current:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="Bat_I_mA">
        <property name="text">
         <string>3.300 V</string>
        </property>
@@ -324,14 +330,14 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="Corrente_media_Bateria">
        <property name="text">
         <string>Battery Average Current:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="I_avg_bat">
        <property name="text">
         <string>3.300 V</string>
        </property>
@@ -402,14 +408,14 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="Bateria1">
        <property name="text">
         <string>Battery 1 Voltage:</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="Bat_1_mV">
        <property name="text">
         <string>3.300 V</string>
        </property>
