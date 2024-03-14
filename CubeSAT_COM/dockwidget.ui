@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ConnetionSettings</class>
+ <widget class="QDockWidget" name="ConnetionSettings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>222</width>
+    <height>131</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="features">
+   <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable</set>
+  </property>
+  <property name="windowTitle">
+   <string>Serial Connection Settings</string>
+  </property>
+  <widget class="QWidget" name="dockWidgetContents">
+   <widget class="QDialogButtonBox" name="buttonBox">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>80</y>
+      <width>211</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="standardButtons">
+     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>201</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetDefaultConstraint</enum>
+     </property>
+     <property name="horizontalSpacing">
+      <number>6</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QLabel" name="Serial_Port">
+       <property name="text">
+        <string>Serial Port:</string>
+       </property>
+       <property name="buddy">
+        <cstring>Port</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="Port">
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <item>
+        <property name="text">
+         <string>ttyUSB0</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ttyUSB1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ttyUSB2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ttyUSB3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ttyUSB4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ttyUSB5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ttyUSB6</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>ttyUSB7</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="Baud_Rate">
+       <property name="currentText">
+        <string>115200</string>
+       </property>
+       <property name="currentIndex">
+        <number>11</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>110</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>300</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>600</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1200</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2400</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>4800</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>9600</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>14400</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>19200</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>38400</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>57600</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>115200</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>128000</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>256000</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="Baud_Rate_2">
+       <property name="text">
+        <string>Baud Rate:</string>
+       </property>
+       <property name="buddy">
+        <cstring>Baud_Rate</cstring>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
