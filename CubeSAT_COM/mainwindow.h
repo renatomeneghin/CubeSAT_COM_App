@@ -9,6 +9,8 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+class Dialog;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -22,15 +24,17 @@ private slots:
 
     void on_Comando_returnPressed();
 
-    void on_Connection_clicked();
-
     void on_Texto_Recebido_textChanged();
-    //bool openSerialPort();
 
-    //bool closeSerialPort();
+    void openSerialPort();
+
+    void closeSerialPort();
 
 private:
+    void initActionsConnections();
+
     Ui::MainWindow *ui;
+    Dialog *settings;
     // QSerialPort *Serial_FTDI;
 };
 #endif // MAINWINDOW_H

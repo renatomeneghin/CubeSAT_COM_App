@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include <string>
+#include "dialog.h"
 
 //#include <QSerialPort>
 //#include <QSerialPortInfo>
@@ -10,11 +12,23 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    settings = new Dialog;
+
+    ui->actionConnect->setEnabled(true);
+    ui->actionDisconnect->setEnabled(false);
+    ui->actionSettings->setEnabled(true);
+    ui->actionClear->setEnabled(true);
+    ui->Comando->setEnabled(false);
+    ui->Texto_Recebido->setEnabled(false);
+
+    initActionsConnections();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete settings;
 }
 
 void MainWindow::on_Enviar_clicked()
@@ -29,18 +43,6 @@ void MainWindow::on_Comando_returnPressed()
     ui->Comando->clear();
 }
 
-
-void MainWindow::on_Connection_clicked()
-{
-    if (ui->Connection->text() == "Connect"){
-        // Conectar ao Uart
-        ui->Connection->setText("Disconnect");
-    } else if (ui->Connection->text() == "Disconnect") {
-        // if(Desonectar_UART())
-        ui->Connection->setText("Connect");
-    }
-}
-
 void MainWindow::on_Texto_Recebido_textChanged()
 {
     std::string Texto = ui->Texto_Recebido->toPlainText().toStdString();
@@ -52,7 +54,16 @@ void MainWindow::on_Texto_Recebido_textChanged()
     }
 }
 
-//bool MainWindow::openSerialPort(){
+void MainWindow::initActionsConnections()
+{
+    connect(ui->actionConnect, SIGNAL(triggered()), this, SLOT(openSerialPort()));
+    connect(ui->actionDisconnect, SIGNAL(triggered()), this, SLOT(closeSerialPort()));
+    connect(ui->actionSettings, SIGNAL(triggered()), settings, SLOT(show()));
+    connect(ui->actionClear, SIGNAL(triggered()), ui->Texto_Recebido, SLOT(clear()));
+}
+
+
+void MainWindow::openSerialPort(){
 //    bool PortOpen = false;
 //    const SettingsDialog::Settings p = m_settings->settings();
 //    Serial_FTDI->setPortName(p.name);
@@ -62,9 +73,11 @@ void MainWindow::on_Texto_Recebido_textChanged()
 //    Serial_FTDI->setStopBits(p.stopBits);
 //    Serial_FTDI->setFlowControl(p.flowControl);
 //    if (Serial_FTDI->open(QIODevice::ReadWrite)) {
-//        ui->actionConnect->setEnabled(false);
-//        ui->actionDisconnect->setEnabled(true);
-//        ui->actionConfigure->setEnabled(false);
+        ui->actionConnect->setEnabled(false);
+        ui->actionDisconnect->setEnabled(true);
+        ui->actionSettings->setEnabled(false);
+        ui->Comando->setEnabled(true);
+        ui->Texto_Recebido->setEnabled(true);
 //        showStatusMessage(tr("Connected to %1 : %2, %3, %4, %5, %6")
 //                          .arg(p.name, p.stringBaudRate, p.stringDataBits,
 //                               p.stringParity, p.stringStopBits, p.stringFlowControl));
@@ -77,16 +90,17 @@ void MainWindow::on_Texto_Recebido_textChanged()
 //    }
 
 //    return PortOpen;
-//}
+}
 
-//void MainWindow::closeSerialPort()
-//{
+void MainWindow::closeSerialPort()
+{
 //    if (Serial_FTDI->isOpen())
 //        Serial_FTDI->close();
 //    //m_console->setEnabled(false);
-//    ui->actionConnect->setEnabled(true);
-//    ui->actionDisconnect->setEnabled(false);
-//    ui->actionConfigure->setEnabled(true);
-//    showStatusMessage(tr("Disconnected"));
-//}
-////bool MainWindow::closeSerialPort();
+    ui->actionConnect->setEnabled(true);
+    ui->actionDisconnect->setEnabled(false);
+    ui->actionSettings->setEnabled(true);
+    ui->Comando->setEnabled(false);
+    ui->Texto_Recebido->setEnabled(false);
+    //showStatusMessage(tr("Disconnected"));
+}

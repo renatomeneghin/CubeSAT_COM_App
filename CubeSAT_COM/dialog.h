@@ -38,7 +38,6 @@ public:
         QString stringStopBits;
         //QSerialPort::FlowControl flowControl;
         QString stringFlowControl;
-        bool localEchoEnabled;
     };
 
     Settings settings() const;
@@ -48,7 +47,6 @@ private slots:
 
     void on_buttonBox_rejected();
 
-    void showPortInfo(int idx);
     void checkCustomBaudRatePolicy(int idx);
     void readSettings();
     void writeSettings();
@@ -60,7 +58,6 @@ private:
 
 
     void fillPortsParameters();
-    void fillPortsInfo();
     void updateSettings();
 };
 
