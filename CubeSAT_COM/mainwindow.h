@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtSerialPort/QSerialPort>
+#include <QtSerialPort/QSerialPortInfo>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -10,7 +13,7 @@ class MainWindow;
 QT_END_NAMESPACE
 
 class Dialog;
-
+class QLabel;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -33,8 +36,11 @@ private slots:
 private:
     void initActionsConnections();
 
+    void showStatusMessage(const QString &message);
+
     Ui::MainWindow *ui;
+    QLabel *status;
     Dialog *settings;
-    // QSerialPort *Serial_FTDI;
+    QSerialPort *Serial_FTDI;
 };
 #endif // MAINWINDOW_H

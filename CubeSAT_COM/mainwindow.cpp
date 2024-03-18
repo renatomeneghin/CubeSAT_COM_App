@@ -3,9 +3,10 @@
 
 #include <string>
 #include "dialog.h"
+#include <QMessageBox>
 
-//#include <QSerialPort>
-//#include <QSerialPortInfo>
+#include <QtSerialPort/QSerialPort>
+#include <QtSerialPort/QSerialPortInfo>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -64,43 +65,42 @@ void MainWindow::initActionsConnections()
 
 
 void MainWindow::openSerialPort(){
-//    bool PortOpen = false;
-//    const SettingsDialog::Settings p = m_settings->settings();
-//    Serial_FTDI->setPortName(p.name);
-//    Serial_FTDI->setBaudRate(p.baudRate);
-//    Serial_FTDI->setDataBits(p.dataBits);
-//    Serial_FTDI->setParity(p.parity);
-//    Serial_FTDI->setStopBits(p.stopBits);
-//    Serial_FTDI->setFlowControl(p.flowControl);
-//    if (Serial_FTDI->open(QIODevice::ReadWrite)) {
+    const Dialog::Settings p = settings->settings();
+    Serial_FTDI->setPortName(p.name);
+    Serial_FTDI->setBaudRate(p.baudRate);
+    Serial_FTDI->setDataBits(p.dataBits);
+    Serial_FTDI->setParity(p.parity);
+    Serial_FTDI->setStopBits(p.stopBits);
+    Serial_FTDI->setFlowControl(p.flowControl);
+    if (Serial_FTDI->open(QIODevice::ReadWrite)) {
         ui->actionConnect->setEnabled(false);
         ui->actionDisconnect->setEnabled(true);
         ui->actionSettings->setEnabled(false);
         ui->Comando->setEnabled(true);
         ui->Texto_Recebido->setEnabled(true);
-//        showStatusMessage(tr("Connected to %1 : %2, %3, %4, %5, %6")
-//                          .arg(p.name, p.stringBaudRate, p.stringDataBits,
-//                               p.stringParity, p.stringStopBits, p.stringFlowControl));
-//        PortOpen = true;
-//    } else {
-//        QMessageBox::critical(this, tr("Error"), Serial_FTDI->errorString());
+        showStatusMessage(tr("Connected to %1 : %2, %3, %4, %5, %6")
+                         .arg(p.name, p.stringBaudRate, p.stringDataBits,
+                              p.stringParity, p.stringStopBits, p.stringFlowControl));
+   } else {
+       QMessageBox::critical(this, tr("Error"), Serial_FTDI->errorString());
 
-//        showStatusMessage(tr("Open error"));
-//        PortOpen = false;
-//    }
-
-//    return PortOpen;
+       showStatusMessage(tr("Open error"));
+   }
 }
 
 void MainWindow::closeSerialPort()
 {
-//    if (Serial_FTDI->isOpen())
-//        Serial_FTDI->close();
-//    //m_console->setEnabled(false);
+    if (Serial_FTDI->isOpen())
+        Serial_FTDI->close();
     ui->actionConnect->setEnabled(true);
     ui->actionDisconnect->setEnabled(false);
     ui->actionSettings->setEnabled(true);
     ui->Comando->setEnabled(false);
     ui->Texto_Recebido->setEnabled(false);
-    //showStatusMessage(tr("Disconnected"));
+    showStatusMessage(tr("Disconnected"));
+}
+
+void MainWindow::showStatusMessage(const QString &message)
+{
+    status->setText(message);
 }

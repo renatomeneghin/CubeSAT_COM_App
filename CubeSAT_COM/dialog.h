@@ -2,9 +2,9 @@
 #define DIALOG_H
 
 #include <QDialog>
-//#include <QtSerialPort/QSerialPort>
+#include <QtSerialPort/QSerialPort>
 #include <QSettings>
-//#include <QIntValidator>
+#include <QIntValidator>
 
 QT_USE_NAMESPACE
 
@@ -30,13 +30,13 @@ public:
         QString name;
         qint32 baudRate;
         QString stringBaudRate;
-        //QSerialPort::DataBits dataBits;
+        QSerialPort::DataBits dataBits;
         QString stringDataBits;
-        //QSerialPort::Parity parity;
+        QSerialPort::Parity parity;
         QString stringParity;
-        //QSerialPort::StopBits stopBits;
+        QSerialPort::StopBits stopBits;
         QString stringStopBits;
-        //QSerialPort::FlowControl flowControl;
+        QSerialPort::FlowControl flowControl;
         QString stringFlowControl;
     };
 
@@ -52,9 +52,9 @@ private slots:
     void writeSettings();
 
 private:
-    Ui::Dialog *ui;
+    Ui::Dialog *ui = nullptr;
     Settings currentSettings;
-    QIntValidator *intValidator;
+    QIntValidator *intValidator = nullptr;
 
 
     void fillPortsParameters();
