@@ -12,8 +12,8 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
-class Dialog;
-class QLabel;
+class COMSettings;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -36,11 +36,14 @@ private slots:
 private:
     void initActionsConnections();
 
+    void writeData(const QByteArray &data);
+
+    void readData();
+
     void showStatusMessage(const QString &message);
 
     Ui::MainWindow *ui;
-    QLabel *status;
-    Dialog *settings;
+    COMSettings *settings;
     QSerialPort *Serial_FTDI;
 };
 #endif // MAINWINDOW_H

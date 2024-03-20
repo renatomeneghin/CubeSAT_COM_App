@@ -2,11 +2,15 @@
 #include "ui_mainwindow.h"
 
 #include <string>
-#include "dialog.h"
+#include "COMSettings.h"
 #include <QMessageBox>
 
+#define DUMMY_PORT 1
+
+#if (!defined(DUMMY_PORT) && DUMMY_PORT==1)
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
+#endif
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    settings = new Dialog;
+    settings = new COMSettings;
 
     ui->actionConnect->setEnabled(true);
     ui->actionDisconnect->setEnabled(false);
@@ -22,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->actionClear->setEnabled(true);
     ui->Comando->setEnabled(false);
     ui->Texto_Recebido->setEnabled(false);
+    ui->Enviar->setEnabled(false);
 
     initActionsConnections();
 }
@@ -34,14 +39,34 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Enviar_clicked()
 {
-    ui->Texto_Recebido->insertPlainText(ui->Comando->text() + "\n");
+    this->writeData((ui->Comando->text()).toLocal8Bit());
     ui->Comando->clear();
 }
 
 void MainWindow::on_Comando_returnPressed()
-{
-    ui->Texto_Recebido->insertPlainText(ui->Comando->text() + "\n");
+{    
+    this->writeData((ui->Comando->text()).toLocal8Bit());
     ui->Comando->clear();
+}
+
+void MainWindow::writeData(const QByteArray &data)
+{
+    #if (!defined(DUMMY_PORT) && DUMMY_PORT==1)
+        Serial_FTDI->write(data);
+    #else
+        ui->Texto_Recebido->insertPlainText(data + "\n");
+        ui->Comando->clear();
+    #endif
+}
+//! [6]
+
+//! [7]
+void MainWindow::readData()
+{
+    #if (!defined(DUMMY_PORT) && DUMMY_PORT==1)
+        QByteArray data = Serial_FTDI->readAll();
+        ui->Texto_Recebido->insertPlainText(QString(data));
+    #endif
 }
 
 void MainWindow::on_Texto_Recebido_textChanged()
@@ -65,42 +90,46 @@ void MainWindow::initActionsConnections()
 
 
 void MainWindow::openSerialPort(){
-    const Dialog::Settings p = settings->settings();
-    Serial_FTDI->setPortName(p.name);
-    Serial_FTDI->setBaudRate(p.baudRate);
-    Serial_FTDI->setDataBits(p.dataBits);
-    Serial_FTDI->setParity(p.parity);
-    Serial_FTDI->setStopBits(p.stopBits);
-    Serial_FTDI->setFlowControl(p.flowControl);
-    if (Serial_FTDI->open(QIODevice::ReadWrite)) {
+    #if (!defined(DUMMY_PORT) && DUMMY_PORT==1)
+        const Dialog::Settings p = settings->settings();
+        Serial_FTDI->setPortName(p.name);
+        Serial_FTDI->setBaudRate(p.baudRate);
+        Serial_FTDI->setDataBits(p.dataBits);
+        Serial_FTDI->setParity(p.parity);
+        Serial_FTDI->setStopBits(p.stopBits);
+        Serial_FTDI->setFlowControl(p.flowControl);
+        if (Serial_FTDI->open(QIODevice::ReadWrite))
+    #else
+    if(true)
+    #endif
+    {
         ui->actionConnect->setEnabled(false);
         ui->actionDisconnect->setEnabled(true);
         ui->actionSettings->setEnabled(false);
         ui->Comando->setEnabled(true);
         ui->Texto_Recebido->setEnabled(true);
-        showStatusMessage(tr("Connected to %1 : %2, %3, %4, %5, %6")
-                         .arg(p.name, p.stringBaudRate, p.stringDataBits,
-                              p.stringParity, p.stringStopBits, p.stringFlowControl));
+        ui->Enviar->setEnabled(true);
    } else {
        QMessageBox::critical(this, tr("Error"), Serial_FTDI->errorString());
-
-       showStatusMessage(tr("Open error"));
    }
 }
 
 void MainWindow::closeSerialPort()
 {
+    #if (!defined(DUMMY_PORT) && DUMMY_PORT==1)
     if (Serial_FTDI->isOpen())
         Serial_FTDI->close();
+    #endif
+
     ui->actionConnect->setEnabled(true);
     ui->actionDisconnect->setEnabled(false);
     ui->actionSettings->setEnabled(true);
     ui->Comando->setEnabled(false);
     ui->Texto_Recebido->setEnabled(false);
-    showStatusMessage(tr("Disconnected"));
+    ui->Enviar->setEnabled(false);
 }
 
 void MainWindow::showStatusMessage(const QString &message)
 {
-    status->setText(message);
+    //status->setText(message);
 }

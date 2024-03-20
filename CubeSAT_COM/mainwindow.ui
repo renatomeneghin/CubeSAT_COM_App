@@ -19,7 +19,7 @@
      <widget class="QGraphicsView" name="Bateria_imagem"/>
     </item>
     <item row="0" column="1" rowspan="2">
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="EPS_Data">
       <property name="title">
        <string>EPS Data</string>
       </property>
@@ -49,8 +49,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>317</width>
-            <height>200</height>
+            <width>347</width>
+            <height>198</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
@@ -224,8 +224,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>316</width>
-            <height>200</height>
+            <width>347</width>
+            <height>198</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
@@ -399,8 +399,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>317</width>
-            <height>200</height>
+            <width>347</width>
+            <height>198</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
@@ -632,7 +632,7 @@
      <x>0</x>
      <y>0</y>
      <width>1335</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

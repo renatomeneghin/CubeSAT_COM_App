@@ -1,5 +1,5 @@
-#include "dialog.h"
-#include "ui_dialog.h"
+#include "COMSettings.h"
+#include "ui_COMSettings.h"
 
 #include <QtSerialPort/QSerialPortInfo>
 #include <QIntValidator>
@@ -10,9 +10,9 @@ QT_USE_NAMESPACE
 static const char blankString[] = QT_TRANSLATE_NOOP("SettingsDialog", "N/A");
 
 
-Dialog::Dialog(QWidget *parent) :
+COMSettings::COMSettings(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Dialog)
+    ui(new Ui::COMSettings)
 {
     ui->setupUi(this);
 
@@ -31,18 +31,18 @@ Dialog::Dialog(QWidget *parent) :
     updateSettings();
 }
 
-Dialog::~Dialog()
+COMSettings::~COMSettings()
 {
     delete ui;
 }
 
-Dialog::Settings Dialog::settings() const
+COMSettings::Settings COMSettings::settings() const
 {
     return currentSettings;
 }
 
 
-void Dialog::checkCustomBaudRatePolicy(int idx)
+void COMSettings::checkCustomBaudRatePolicy(int idx)
 {
     bool isCustomBaudRate = !ui->Baud_Rate->itemData(idx).isValid();
     ui->Baud_Rate->setEditable(isCustomBaudRate);
@@ -53,7 +53,7 @@ void Dialog::checkCustomBaudRatePolicy(int idx)
     }
 }
 
-void Dialog::fillPortsParameters()
+void COMSettings::fillPortsParameters()
 {
     // fill ports
     ui->Port->clear();
@@ -111,7 +111,7 @@ void Dialog::fillPortsParameters()
    ui->flowControlBox->addItem(QStringLiteral("XON/XOFF"), QSerialPort::SoftwareControl);
 }
 
-void Dialog::updateSettings()
+void COMSettings::updateSettings()
 {
     currentSettings.name = ui->Port->currentText();
 
@@ -148,7 +148,7 @@ void Dialog::updateSettings()
 
 }
 
-void Dialog::writeSettings()
+void COMSettings::writeSettings()
 {
     // Baud Rate
     QSettings s;
@@ -168,7 +168,7 @@ void Dialog::writeSettings()
     s.setValue("flowControlIndex",ui->flowControlBox->currentIndex());
 }
 
-void Dialog::readSettings()
+void COMSettings::readSettings()
 {
     QSettings s;
     ui->Port->setCurrentIndex(s.value("portIndex").toInt());
@@ -181,7 +181,7 @@ void Dialog::readSettings()
 
 
 
-void Dialog::on_buttonBox_accepted()
+void COMSettings::on_buttonBox_accepted()
 {
     updateSettings();
     writeSettings();
@@ -189,7 +189,7 @@ void Dialog::on_buttonBox_accepted()
 }
 
 
-void Dialog::on_buttonBox_rejected()
+void COMSettings::on_buttonBox_rejected()
 {
     hide();
 }

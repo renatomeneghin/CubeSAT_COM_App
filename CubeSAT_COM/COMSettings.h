@@ -1,5 +1,5 @@
-#ifndef DIALOG_H
-#define DIALOG_H
+#ifndef COMSETTINGS_H
+#define COMSETTINGS_H
 
 #include <QDialog>
 #include <QtSerialPort/QSerialPort>
@@ -11,7 +11,7 @@ QT_USE_NAMESPACE
 QT_BEGIN_NAMESPACE
 
 namespace Ui {
-class Dialog;
+class COMSettings;
 }
 
 class QIntValidator;
@@ -19,13 +19,13 @@ class QIntValidator;
 QT_END_NAMESPACE
 
 
-class Dialog : public QDialog
+class COMSettings : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Dialog(QWidget *parent = nullptr);
-    ~Dialog();
+    explicit COMSettings(QWidget *parent = nullptr);
+    ~COMSettings();
     struct Settings{
         QString name;
         qint32 baudRate;
@@ -52,7 +52,7 @@ private slots:
     void writeSettings();
 
 private:
-    Ui::Dialog *ui = nullptr;
+    Ui::COMSettings *ui = nullptr;
     Settings currentSettings;
     QIntValidator *intValidator = nullptr;
 
@@ -61,4 +61,4 @@ private:
     void updateSettings();
 };
 
-#endif // DIALOG_H
+#endif // COMSETTINGS_H
