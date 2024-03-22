@@ -1,15 +1,18 @@
-    #ifndef MAINWINDOW_H
+#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QtSerialPort/QSerialPort>
-#include <QtSerialPort/QSerialPortInfo>
+#include <QtCore/QtGlobal>
 
+#include <QMainWindow>
+
+#include <QtSerialPort/QSerialPort>
 
 QT_BEGIN_NAMESPACE
+
 namespace Ui {
 class MainWindow;
 }
+
 QT_END_NAMESPACE
 
 class COMSettings;
@@ -40,7 +43,7 @@ private:
 
     void readData();
 
-    void showStatusMessage(const QString &message);
+    void handleError(QSerialPort::SerialPortError error);
 
     Ui::MainWindow *ui;
     COMSettings *settings;
