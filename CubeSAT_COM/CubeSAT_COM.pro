@@ -11,11 +11,13 @@ CONFIG += c++17
 
 SOURCES += \
     COMSettings.cpp \
+#    console.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     COMSettings.h \
+#    console.h \
     mainwindow.h
 
 FORMS += \

@@ -42,7 +42,7 @@ public:
     QWidget *centralwidget;
     QGridLayout *gridLayout_7;
     QGraphicsView *Bateria_imagem;
-    QGroupBox *groupBox;
+    QGroupBox *EPS_Data;
     QGridLayout *gridLayout;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
@@ -140,18 +140,18 @@ public:
 
         gridLayout_7->addWidget(Bateria_imagem, 0, 0, 1, 1);
 
-        groupBox = new QGroupBox(centralwidget);
-        groupBox->setObjectName("groupBox");
-        gridLayout = new QGridLayout(groupBox);
+        EPS_Data = new QGroupBox(centralwidget);
+        EPS_Data->setObjectName("EPS_Data");
+        gridLayout = new QGridLayout(EPS_Data);
         gridLayout->setSpacing(0);
         gridLayout->setObjectName("gridLayout");
         gridLayout->setContentsMargins(0, 0, 0, 0);
-        scrollArea = new QScrollArea(groupBox);
+        scrollArea = new QScrollArea(EPS_Data);
         scrollArea->setObjectName("scrollArea");
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 317, 200));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 347, 198));
         gridLayout_2 = new QGridLayout(scrollAreaWidgetContents);
         gridLayout_2->setObjectName("gridLayout_2");
         Bateria1 = new QLabel(scrollAreaWidgetContents);
@@ -225,7 +225,7 @@ public:
         gridLayout->addWidget(scrollArea, 0, 1, 1, 1);
 
 
-        gridLayout_7->addWidget(groupBox, 0, 1, 2, 1);
+        gridLayout_7->addWidget(EPS_Data, 0, 1, 2, 1);
 
         groupBox_2 = new QGroupBox(centralwidget);
         groupBox_2->setObjectName("groupBox_2");
@@ -238,7 +238,7 @@ public:
         scrollArea_2->setWidgetResizable(true);
         scrollAreaWidgetContents_2 = new QWidget();
         scrollAreaWidgetContents_2->setObjectName("scrollAreaWidgetContents_2");
-        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 316, 200));
+        scrollAreaWidgetContents_2->setGeometry(QRect(0, 0, 347, 198));
         gridLayout_4 = new QGridLayout(scrollAreaWidgetContents_2);
         gridLayout_4->setObjectName("gridLayout_4");
         Bateria1_2 = new QLabel(scrollAreaWidgetContents_2);
@@ -325,7 +325,7 @@ public:
         scrollArea_3->setWidgetResizable(true);
         scrollAreaWidgetContents_3 = new QWidget();
         scrollAreaWidgetContents_3->setObjectName("scrollAreaWidgetContents_3");
-        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 317, 200));
+        scrollAreaWidgetContents_3->setGeometry(QRect(0, 0, 347, 198));
         gridLayout_6 = new QGridLayout(scrollAreaWidgetContents_3);
         gridLayout_6->setObjectName("gridLayout_6");
         Bateria1_3 = new QLabel(scrollAreaWidgetContents_3);
@@ -456,7 +456,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1335, 21));
+        menubar->setGeometry(QRect(0, 0, 1335, 22));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -506,7 +506,7 @@ public:
         actionDisconnect->setText(QCoreApplication::translate("MainWindow", "Disconnect", nullptr));
         actionSettings->setText(QCoreApplication::translate("MainWindow", "Settings", nullptr));
         actionClear->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
-        groupBox->setTitle(QCoreApplication::translate("MainWindow", "EPS Data", nullptr));
+        EPS_Data->setTitle(QCoreApplication::translate("MainWindow", "EPS Data", nullptr));
         Bateria1->setText(QCoreApplication::translate("MainWindow", "Battery 1 Voltage:", nullptr));
         Bat_1_mV->setPlaceholderText(QCoreApplication::translate("MainWindow", "3300 mV", nullptr));
         Bateria2->setText(QCoreApplication::translate("MainWindow", "Battery 2 Voltage:", nullptr));

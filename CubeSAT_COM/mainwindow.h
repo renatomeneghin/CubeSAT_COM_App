@@ -16,6 +16,8 @@ class MainWindow;
 QT_END_NAMESPACE
 
 class COMSettings;
+class QTimer;
+//class Console;
 
 class MainWindow : public QMainWindow
 {
@@ -36,6 +38,10 @@ private slots:
 
     void closeSerialPort();
 
+    void handleError(QSerialPort::SerialPortError error);
+    void handleBytesWritten(qint64 bytes);
+    void handleWriteTimeout();
+
 private:
     void initActionsConnections();
 
@@ -43,10 +49,13 @@ private:
 
     void readData();
 
-    void handleError(QSerialPort::SerialPortError error);
+    void showWriteError(const QString &message);
 
-    Ui::MainWindow *ui;
-    COMSettings *settings;
-    QSerialPort *Serial_FTDI;
+    Ui::MainWindow *ui = nullptr;
+    COMSettings *settings = nullptr;
+    QSerialPort *Serial_FTDI = nullptr;
+    qint64 BytesToWrite = 0;
+    QTimer *Timer = nullptr;
+//   Console *Texto_recebido = nullptr;
 };
 #endif // MAINWINDOW_H

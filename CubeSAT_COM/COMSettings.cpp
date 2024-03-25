@@ -18,12 +18,12 @@ COMSettings::COMSettings(QWidget *parent) :
 
     intValidator = new QIntValidator(0, 4000000, this);
 
-    //ui->baudRateBox->setInsertPolicy(QComboBox::NoInsert);
+    ui->Baud_Rate->setInsertPolicy(QComboBox::NoInsert);
 
     //connect(ui->serialPortInfoListBox, SIGNAL(currentIndexChanged(int)),
     //        this, SLOT(showPortInfo(int)));
-    //connect(ui->baudRateBox, SIGNAL(currentIndexChanged(int)),
-    //        this, SLOT(checkCustomBaudRatePolicy(int)));
+    connect(ui->Baud_Rate, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(checkCustomBaudRatePolicy(int)));
 
     fillPortsParameters();
 
@@ -79,36 +79,37 @@ void COMSettings::fillPortsParameters()
     }
 
    // fill baud rate (is not the entire list of available values,
-   ui->Baud_Rate->addItem(QStringLiteral("9600"), QSerialPort::Baud9600);
-   ui->Baud_Rate->addItem(QStringLiteral("19200"), QSerialPort::Baud19200);
-   ui->Baud_Rate->addItem(QStringLiteral("38400"), QSerialPort::Baud38400);
-   ui->Baud_Rate->addItem(QStringLiteral("115200"), QSerialPort::Baud115200);
+    ui->Baud_Rate->addItem(QStringLiteral("9600"), QSerialPort::Baud9600);
+    ui->Baud_Rate->addItem(QStringLiteral("19200"), QSerialPort::Baud19200);
+    ui->Baud_Rate->addItem(QStringLiteral("38400"), QSerialPort::Baud38400);
+    ui->Baud_Rate->addItem(QStringLiteral("115200"), QSerialPort::Baud115200);
+    ui->Baud_Rate->setCurrentIndex(3);
 
 //    // fill data bits
-   ui->dataBitsBox->addItem(QStringLiteral("5"), QSerialPort::Data5);
-   ui->dataBitsBox->addItem(QStringLiteral("6"), QSerialPort::Data6);
-   ui->dataBitsBox->addItem(QStringLiteral("7"), QSerialPort::Data7);
-   ui->dataBitsBox->addItem(QStringLiteral("8"), QSerialPort::Data8);
-   ui->dataBitsBox->setCurrentIndex(3);
+    ui->dataBitsBox->addItem(QStringLiteral("5"), QSerialPort::Data5);
+    ui->dataBitsBox->addItem(QStringLiteral("6"), QSerialPort::Data6);
+    ui->dataBitsBox->addItem(QStringLiteral("7"), QSerialPort::Data7);
+    ui->dataBitsBox->addItem(QStringLiteral("8"), QSerialPort::Data8);
+    ui->dataBitsBox->setCurrentIndex(3);
 
 //    // fill parity
-   ui->parityBox->addItem(QStringLiteral("None"), QSerialPort::NoParity);
-   ui->parityBox->addItem(QStringLiteral("Even"), QSerialPort::EvenParity);
-   ui->parityBox->addItem(QStringLiteral("Odd"), QSerialPort::OddParity);
-   ui->parityBox->addItem(QStringLiteral("Mark"), QSerialPort::MarkParity);
-   ui->parityBox->addItem(QStringLiteral("Space"), QSerialPort::SpaceParity);
+    ui->parityBox->addItem(QStringLiteral("None"), QSerialPort::NoParity);
+    ui->parityBox->addItem(QStringLiteral("Even"), QSerialPort::EvenParity);
+    ui->parityBox->addItem(QStringLiteral("Odd"), QSerialPort::OddParity);
+    ui->parityBox->addItem(QStringLiteral("Mark"), QSerialPort::MarkParity);
+    ui->parityBox->addItem(QStringLiteral("Space"), QSerialPort::SpaceParity);
 
 //    // fill stop bits
-   ui->stopBitsBox->addItem(QStringLiteral("1"), QSerialPort::OneStop);
+    ui->stopBitsBox->addItem(QStringLiteral("1"), QSerialPort::OneStop);
 #ifdef Q_OS_WIN
-   ui->stopBitsBox->addItem(QStringLiteral("1.5"), QSerialPort::OneAndHalfStop);
+    ui->stopBitsBox->addItem(QStringLiteral("1.5"), QSerialPort::OneAndHalfStop);
 #endif
-   ui->stopBitsBox->addItem(QStringLiteral("2"), QSerialPort::TwoStop);
+    ui->stopBitsBox->addItem(QStringLiteral("2"), QSerialPort::TwoStop);
 
    // fill flow control
-   ui->flowControlBox->addItem(QStringLiteral("None"), QSerialPort::NoFlowControl);
-   ui->flowControlBox->addItem(QStringLiteral("RTS/CTS"), QSerialPort::HardwareControl);
-   ui->flowControlBox->addItem(QStringLiteral("XON/XOFF"), QSerialPort::SoftwareControl);
+    ui->flowControlBox->addItem(QStringLiteral("None"), QSerialPort::NoFlowControl);
+    ui->flowControlBox->addItem(QStringLiteral("RTS/CTS"), QSerialPort::HardwareControl);
+    ui->flowControlBox->addItem(QStringLiteral("XON/XOFF"), QSerialPort::SoftwareControl);
 }
 
 void COMSettings::updateSettings()
@@ -121,51 +122,31 @@ void COMSettings::updateSettings()
        currentSettings.baudRate = ui->Baud_Rate->currentText().toInt();
    } else {
        // standard baud rate
-       currentSettings.baudRate = static_cast<QSerialPort::BaudRate>(
-                   ui->Baud_Rate->itemData(ui->Baud_Rate->currentIndex()).toInt());
+       const auto baudRateData = ui->Baud_Rate->currentData();
+       currentSettings.baudRate = baudRateData.value<QSerialPort::BaudRate>();
    }
    currentSettings.stringBaudRate = QString::number(currentSettings.baudRate);
 
    // Data bits
-   currentSettings.dataBits = static_cast<QSerialPort::DataBits>(
-               ui->dataBitsBox->itemData(ui->dataBitsBox->currentIndex()).toInt());
+   const auto dataBitsData = ui->dataBitsBox->currentData();
+   currentSettings.dataBits = dataBitsData.value<QSerialPort::DataBits>();
    currentSettings.stringDataBits = ui->dataBitsBox->currentText();
 
    // Parity
-   currentSettings.parity = static_cast<QSerialPort::Parity>(
-               ui->parityBox->itemData(ui->parityBox->currentIndex()).toInt());
+   const auto parityData = ui->parityBox->currentData();
+   currentSettings.parity = parityData.value<QSerialPort::Parity>();
    currentSettings.stringParity = ui->parityBox->currentText();
 
    // Stop bits
-   currentSettings.stopBits = static_cast<QSerialPort::StopBits>(
-               ui->stopBitsBox->itemData(ui->stopBitsBox->currentIndex()).toInt());
+   const auto stopBitsData = ui->stopBitsBox->currentData();
+   currentSettings.stopBits = stopBitsData.value<QSerialPort::StopBits>();
    currentSettings.stringStopBits = ui->stopBitsBox->currentText();
 
    // Flow control
-   currentSettings.flowControl = static_cast<QSerialPort::FlowControl>(
-               ui->flowControlBox->itemData(ui->flowControlBox->currentIndex()).toInt());
+   const auto flowControlData = ui->flowControlBox->currentData();
+   currentSettings.flowControl = flowControlData.value<QSerialPort::FlowControl>();
    currentSettings.stringFlowControl = ui->flowControlBox->currentText();
 
-}
-
-void COMSettings::writeSettings()
-{
-    // Baud Rate
-    QSettings s;
-    s.setValue("portIndex", ui->Port->currentIndex());
-    s.setValue("customBaudRate", ui->Baud_Rate->currentText().toInt());
-    s.setValue("baudRateIndex",ui->Baud_Rate->currentIndex());
-
-    // Data bits
-    s.setValue("dataBitsIndex",ui->dataBitsBox->currentIndex());
-    // Parity
-    s.setValue("parityIndex",ui->parityBox->currentIndex());
-
-    // Stop bits
-    s.setValue("stopBitsIndex",ui->stopBitsBox->currentIndex());
-
-    // Flow control
-    s.setValue("flowControlIndex",ui->flowControlBox->currentIndex());
 }
 
 void COMSettings::readSettings()
@@ -184,7 +165,6 @@ void COMSettings::readSettings()
 void COMSettings::on_buttonBox_accepted()
 {
     updateSettings();
-    writeSettings();
     hide();
 }
 

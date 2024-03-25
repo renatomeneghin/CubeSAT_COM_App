@@ -49,7 +49,6 @@ private slots:
 
     void checkCustomBaudRatePolicy(int idx);
     void readSettings();
-    void writeSettings();
 
 private:
     Ui::COMSettings *ui = nullptr;
