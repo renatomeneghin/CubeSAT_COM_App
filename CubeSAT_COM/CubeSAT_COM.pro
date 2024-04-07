@@ -1,4 +1,5 @@
-QT       += core gui
+QT       += core gui \
+    quick
 QT       += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -13,12 +14,14 @@ SOURCES += \
     COMSettings.cpp \
 #    console.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+#    uhd.cpp
 
 HEADERS += \
     COMSettings.h \
 #    console.h \
-    mainwindow.h
+    mainwindow.h \
+#    uhd.h
 
 FORMS += \
     COMSettings.ui \
@@ -31,3 +34,14 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     qrc_images.qrc
+
+
+LIBS += -lqwt -L/usr/local/lib -luhd -lboost_filesystem -lboost_system -lboost_thread -lboost_chrono -lgomp -lopencv_core -lopencv_highgui -lopencv_video -lopencv_imgproc
+
+INCLUDEPATH = /usr/local/include
+
+DEFINES += QWT_DLL
+
+CONFIG += qwt
+
+QMAKE_CXXFLAGS += -std=c++11 -fopenmp -Wno-sign-compare
