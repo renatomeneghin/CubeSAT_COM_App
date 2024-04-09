@@ -7,16 +7,58 @@
     <x>0</x>
     <y>0</y>
     <width>1335</width>
-    <height>550</height>
+    <height>599</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Controlador CubeSAT - SpaceLAB UFSC</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="qrc_images.qrc">
+    <normaloff>:/Images/Space_LAB_Logo.png</normaloff>:/Images/Space_LAB_Logo.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_7">
     <item row="0" column="0">
-     <widget class="QGraphicsView" name="Bateria_imagem"/>
+     <widget class="QGroupBox" name="Signal_Destination_Box">
+      <property name="title">
+       <string>Signal Destination</string>
+      </property>
+      <layout class="QFormLayout" name="formLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="Satellite_label">
+         <property name="text">
+          <string>Satellite</string>
+         </property>
+         <property name="buddy">
+          <cstring>Bat_1_mV</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="Link_Label">
+         <property name="text">
+          <string>Link</string>
+         </property>
+         <property name="buddy">
+          <cstring>Bat_2_mV</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="Link">
+         <item>
+          <property name="text">
+           <string>Beacon</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="Satellite"/>
+       </item>
+      </layout>
+     </widget>
     </item>
     <item row="0" column="1" rowspan="2">
      <widget class="QGroupBox" name="EPS_Data">
@@ -49,74 +91,11 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>317</width>
-            <height>200</height>
+            <width>340</width>
+            <height>271</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="0">
-            <widget class="QLabel" name="Bateria1">
-             <property name="text">
-              <string>Battery 1 Voltage:</string>
-             </property>
-             <property name="buddy">
-              <cstring>Bat_1_mV</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="Bat_1_mV">
-             <property name="readOnly">
-              <bool>true</bool>
-             </property>
-             <property name="placeholderText">
-              <string>3300 mV</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="Bateria2">
-             <property name="text">
-              <string>Battery 2 Voltage:</string>
-             </property>
-             <property name="buddy">
-              <cstring>Bat_2_mV</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="Bat_2_mV">
-             <property name="readOnly">
-              <bool>true</bool>
-             </property>
-             <property name="placeholderText">
-              <string>3300 mV</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="Corrente_Bateria">
-             <property name="text">
-              <string>Battery Current:</string>
-             </property>
-             <property name="buddy">
-              <cstring>Bat_mA</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QLineEdit" name="Bat_mA">
-             <property name="text">
-              <string>1.000 mA</string>
-             </property>
-             <property name="readOnly">
-              <bool>true</bool>
-             </property>
-             <property name="placeholderText">
-              <string>3300 mV</string>
-             </property>
-            </widget>
-           </item>
            <item row="3" column="0">
             <widget class="QLabel" name="Corrente_media_Bateria">
              <property name="text">
@@ -140,13 +119,36 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_9">
+           <item row="5" column="1">
+            <widget class="QLineEdit" name="Protection_reg">
              <property name="text">
-              <string>Battery Accumulated Current:</string>
+              <string>0x3f</string>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="placeholderText">
+              <string>3300 mV</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="Bateria1">
+             <property name="text">
+              <string>Battery 1 Voltage:</string>
              </property>
              <property name="buddy">
-              <cstring>Bat_mA_Acc</cstring>
+              <cstring>Bat_1_mV</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="Bat_1_mV">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="placeholderText">
+              <string>3300 mV</string>
              </property>
             </widget>
            </item>
@@ -155,6 +157,36 @@
              <property name="text">
               <string>1.000 mA</string>
              </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="placeholderText">
+              <string>3300 mV</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="Bateria2">
+             <property name="text">
+              <string>Battery 2 Voltage:</string>
+             </property>
+             <property name="buddy">
+              <cstring>Bat_2_mV</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="Corrente_Bateria">
+             <property name="text">
+              <string>Battery Current:</string>
+             </property>
+             <property name="buddy">
+              <cstring>Bat_mA</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="Bat_2_mV">
              <property name="readOnly">
               <bool>true</bool>
              </property>
@@ -173,16 +205,26 @@
              </property>
             </widget>
            </item>
-           <item row="5" column="1">
-            <widget class="QLineEdit" name="Protection_reg">
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="Bat_mA">
              <property name="text">
-              <string>0x3f</string>
+              <string>1.000 mA</string>
              </property>
              <property name="readOnly">
               <bool>true</bool>
              </property>
              <property name="placeholderText">
               <string>3300 mV</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Battery Accumulated Current:</string>
+             </property>
+             <property name="buddy">
+              <cstring>Bat_mA_Acc</cstring>
              </property>
             </widget>
            </item>
@@ -194,7 +236,7 @@
      </widget>
     </item>
     <item row="0" column="2" rowspan="2">
-     <widget class="QGroupBox" name="groupBox_2">
+     <widget class="QGroupBox" name="OBDH_Data">
       <property name="title">
        <string>EPS Data</string>
       </property>
@@ -224,8 +266,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>316</width>
-            <height>200</height>
+            <width>341</width>
+            <height>271</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
@@ -369,7 +411,7 @@
      </widget>
     </item>
     <item row="0" column="3" rowspan="2">
-     <widget class="QGroupBox" name="groupBox_3">
+     <widget class="QGroupBox" name="TTC_Data">
       <property name="title">
        <string>EPS Data</string>
       </property>
@@ -399,8 +441,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>317</width>
-            <height>200</height>
+            <width>340</width>
+            <height>271</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
@@ -544,21 +586,118 @@
      </widget>
     </item>
     <item row="1" column="0">
-     <widget class="QLCDNumber" name="Bateria_numero">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>30</height>
-       </size>
+     <widget class="QGroupBox" name="SDR_Box">
+      <property name="title">
+       <string>SDR</string>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-       </font>
-      </property>
-      <property name="smallDecimalPoint">
-       <bool>true</bool>
-      </property>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="Frequency_Label">
+         <property name="text">
+          <string>Frequency [Hz]</string>
+         </property>
+         <property name="buddy">
+          <cstring>Bat_1_mV</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="RF_Frequency">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>437000000</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="Tx_SamplesperSecond_Label">
+         <property name="text">
+          <string>Tx Samples [S/s]</string>
+         </property>
+         <property name="buddy">
+          <cstring>Bat_2_mV</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="Tx_Samp_per_second">
+         <property name="text">
+          <string>1000000</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>3300 mV</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="Tx_Gain_Label">
+         <property name="text">
+          <string>Tx Gain</string>
+         </property>
+         <property name="buddy">
+          <cstring>Bat_2_mV</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="Tx_Gain">
+         <property name="text">
+          <string>40</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>3300 mV</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="Rx_Gain_Label">
+         <property name="text">
+          <string>Rx Gain</string>
+         </property>
+         <property name="buddy">
+          <cstring>Bat_2_mV</cstring>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="Rx_Gain">
+         <property name="text">
+          <string>50</string>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>3300 mV</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="Rx_SamplesperSecond_Label">
+         <property name="text">
+          <string>Rx Samples [S/s]</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="Rx_SamplesperSecond">
+         <property name="text">
+          <string>1000000</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
     <item row="2" column="0" colspan="4">
@@ -632,7 +771,7 @@
      <x>0</x>
      <y>0</y>
      <width>1335</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -698,6 +837,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="qrc_images.qrc"/>
+ </resources>
  <connections/>
 </ui>

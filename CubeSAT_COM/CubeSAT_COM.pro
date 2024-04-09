@@ -11,17 +11,21 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+#    ../../USRP_Software_defined_radar/waveform.cpp \
     COMSettings.cpp \
 #    console.cpp \
     main.cpp \
     mainwindow.cpp \
-#    uhd.cpp
+ \#    uhd.cpp
+    waveform.cpp
 
 HEADERS += \
+#    ../../USRP_Software_defined_radar/waveform.h \
     COMSettings.h \
 #    console.h \
     mainwindow.h \
-#    uhd.h
+ \#    uhd.h
+    waveform.h
 
 FORMS += \
     COMSettings.ui \
@@ -36,7 +40,7 @@ RESOURCES += \
     qrc_images.qrc
 
 
-LIBS += -lqwt -L/usr/local/lib -luhd -lboost_filesystem -lboost_system -lboost_thread -lboost_chrono -lgomp -lopencv_core -lopencv_highgui -lopencv_video -lopencv_imgproc
+LIBS += -L/usr/local/lib -luhd -lboost_filesystem -lboost_system -lboost_thread -lboost_chrono -lgomp
 
 INCLUDEPATH = /usr/local/include
 
